@@ -1,0 +1,36 @@
+# XD-Violence dataset configuration
+dataset:
+  name: "XD-Violence"
+
+  # Paths (to be overridden by user)
+  video_dir: "/path/to/XD-Violence/videos"
+  annotation_file: "/path/to/annotations.txt"
+
+  # Anomaly categories
+  categories:
+    - "Abuse"
+    - "Car Accident"
+    - "Explosion"
+    - "Fighting"
+    - "Riot"
+    - "Shooting"
+    - "Normal"
+
+  # Label extraction pattern (from filename)
+  label_pattern: "label_([A-Za-z]+)"
+
+  # Label mapping
+  # Label 'A' = normal, other = anomaly
+  labels:
+    normal_label: "A"
+    anomaly: 1
+    normal: 0
+
+# Evaluation settings
+evaluation:
+  fps: 24
+
+# Prompt for anomaly detection
+prompts:
+  coarse: "Identify any abnormal events or safety hazards in this video."
+  detailed: "Analyze the video for anomalies. Describe any violent activities, accidents, or deviations from normal patterns in detail."

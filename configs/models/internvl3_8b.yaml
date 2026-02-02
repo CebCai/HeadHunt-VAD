@@ -1,0 +1,15 @@
+# InternVL3-8B model configuration
+model:
+  name: "InternVL3-8B"
+  num_layers: 28
+  num_heads: 28
+  head_dim: 128
+  hidden_size: 4096
+
+  # Module paths for hook registration
+  attention_module_path: "language_model.model.layers.{layer}.self_attn.o_proj"
+  final_layer_path: "language_model.model.layers"
+
+  # HuggingFace settings
+  trust_remote_code: true
+  use_flash_attn: true

@@ -1,0 +1,71 @@
+# Default configuration for HeadHunt-VAD
+#
+# Paper reference: "HeadHunt-VAD: Hunting Robust Anomaly-Sensitive Heads
+# in MLLM for Tuning-Free Video Anomaly Detection"
+
+# Model configuration
+model:
+  type: "internvl3"  # Options: internvl3, llavaov, qwenvl
+  path: "/path/to/model"  # Path to the pre-trained MLLM
+  device: "cuda:0"
+  dtype: "bfloat16"
+
+# Data preprocessing
+# Paper: "Each video is segmented at 48 frames intervals and uniformly
+# sample F=16 frames as the input to MLLM."
+data:
+  segment_interval: 48    # Frames between segments
+  frames_per_segment: 16  # F=16 frames sampled per segment
+  input_size: 448         # Image input resolution
+  max_num_tiles: 1        # Dynamic tiling for InternVL3
+  fps: 30                 # Video frame rate
+
+# RHI (Robust Head Identification) configuration
+# Paper: "We select the top K=5 expert heads for feature extraction
+# and set the instability penalty to λ=0.5."
+rhi:
+  lambda_penalty: 0.5  # λ: Weight for instability penalty in RSS
+  top_k: 5             # K: Number of robust heads to select
+
+# Textual Prompts
+# Defines the set of prompts used for feature extraction and RHI stability analysis.
+prompts:
+  coarse: "Identify any abnormal events or safety hazards in this video."
+  detailed: "Analyze the video for anomalies. Describe any violent activities, accidents, or deviations from normal patterns in detail."
+
+# Anomaly scorer configuration
+# Paper: "The Anomaly Scorer is a logistic regression module."
+scorer:
+  model_type: "logistic_regression"
+  max_iter: 2000
+  solver: "liblinear"
+  random_state: 42
+  C: 1.0  # Regularization parameter
+
+# Temporal localization
+# Paper: "The Temporal Locator uses 1D Gaussian smoothing kernel σ_g=1.5
+# and threshold of τ=0.65, both optimized for frame-level F1-score
+# on the validation set."
+locator:
+  gaussian_sigma: 1.5  # σ_g: Gaussian smoothing kernel sigma
+  threshold: 0.65      # τ: Detection threshold
+
+# Evaluation metrics
+# Paper: "frame-level AUC (Area Under the ROC Curve) for UCF-Crime
+# and average precision (AP) for XD-Violence"
+evaluation:
+  ucf_crime_metric: "auc"
+  xd_violence_metric: "ap"
+  fps: 30  # Frame rate for frame-level evaluation
+
+# Output paths
+output:
+  features_dir: "./features"
+  models_dir: "./models"
+  results_dir: "./results"
+  visualizations_dir: "./visualizations"
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

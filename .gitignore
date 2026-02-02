@@ -1,0 +1,43 @@
+# --- Python & Environment ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+.ipynb_checkpoints/
+
+# --- Build & Distribution ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Project Specific Ignored Folders ---
+# 排除测试运行产生的大量数据
+test_run/
+outputs/
+features/
+results/
+.hypothesis/
+# 排除 IDE 配置
+.idea/
+.vscode/
+*.swp
+
+# --- Large Files & Models ---
+# 排除大权重文件，但保留 configs/pretrained 下的小 JSON
+*.pth
+*.pt
+*.bin
+*.ckpt
+# 排除生成的 pickle 和 joblib (除非显式通过 git add 添加)
+*.pkl
+*.joblib
+*.npy
+
+# --- System ---
+.DS_Store
+Thumbs.db

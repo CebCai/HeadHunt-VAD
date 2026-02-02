@@ -1,0 +1,14 @@
+# QwenVL model configuration
+model:
+  name: "QwenVL"
+  num_layers: 32
+  num_heads: 32
+  head_dim: 128
+  hidden_size: 4096
+
+  # Module paths for hook registration
+  attention_module_path: "model.layers.{layer}.self_attn.o_proj"
+  final_layer_path: "model.layers"
+
+  # HuggingFace settings
+  trust_remote_code: true

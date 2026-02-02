@@ -1,0 +1,21 @@
+{
+    "description": "Pre-identified expert head indices from RHI analysis on XD-Violence dataset using InternVL3-8B",
+    "model": "internvl3_8b",
+    "dataset": "xd_violence",
+    "lambda_penalty": 0.5,
+    "top_k": 5,
+    "paper_reference": "HeadHunt-VAD: Hunting Robust Anomaly-Sensitive Heads in MLLM for Tuning-Free Video Anomaly Detection",
+    "head_indices": [
+        [18, 4],
+        [18, 13],
+        [20, 4],
+        [23, 24],
+        [23, 27]
+    ],
+    "performance": {
+        "metric": "AP",
+        "value": 82.63,
+        "dataset": "XD-Violence"
+    },
+    "note": "These are example head indices. For best results, run RHI on your own data using scripts/run_rhi.py"
+}

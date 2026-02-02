@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "headhunt-vad"
+version = "0.1.0"
+description = "HeadHunt-VAD: Tuning-Free Video Anomaly Detection via Robust Head Identification in MLLMs"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "HeadHunt-VAD Authors"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0",
+    "torchvision>=0.15",
+    "transformers>=4.37",
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.2",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "pyyaml>=6.0",
+    "decord>=0.6",
+    "Pillow>=9.0",
+    "tqdm>=4.65",
+    "joblib>=1.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "flake8>=6.0",
+    "black>=23.0",
+]
+
+[project.scripts]
+headhunt-extract = "scripts.extract_features:main"
+headhunt-rhi = "scripts.run_rhi:main"
+headhunt-train = "scripts.train_scorer:main"
+headhunt-infer = "scripts.inference:main"
+headhunt-eval = "scripts.evaluate:main"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "examples*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.json"]

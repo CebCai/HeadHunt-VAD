@@ -1,0 +1,41 @@
+# UCF-Crime dataset configuration
+dataset:
+  name: "UCF-Crime"
+
+  # Paths (to be overridden by user)
+  video_dir: "/path/to/UCF-Crime/Videos"
+  annotation_file: "/path/to/Temporal_Anomaly_Annotation.txt"
+
+  # Anomaly categories
+  categories:
+    - "Abuse"
+    - "Arrest"
+    - "Arson"
+    - "Assault"
+    - "Burglary"
+    - "Explosion"
+    - "Fighting"
+    - "Robbery"
+    - "Shooting"
+    - "Shoplifting"
+    - "Stealing"
+    - "Vandalism"
+    - "RoadAccidents"
+
+  # Normal video directory name
+  normal_dir: "Testing_Normal_Videos_Anomaly"
+
+  # Label mapping
+  # Label 0 = normal, Label 1 = anomaly
+  labels:
+    normal: 0
+    anomaly: 1
+
+# Evaluation settings
+evaluation:
+  fps: 30
+
+# Prompt for anomaly detection
+prompts:
+  coarse: "Identify any abnormal events or safety hazards in this video."
+  detailed: "Analyze the video for anomalies. Describe any violent activities, accidents, or deviations from normal patterns in detail."
